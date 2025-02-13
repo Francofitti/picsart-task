@@ -1,8 +1,5 @@
-
-
-import useSWR from 'swr'
-
-
+import useSWRInfinite from 'swr/infinite'
+ 
 export type Photo = {
     id: number;
     width: number;
@@ -34,25 +31,36 @@ export type PhotoResponse = {
     next_page: string;
   };
   
+const fetcher = (url: string) => {
+return fetch(url, {
+    method: 'GET',
+    headers: {
+    'Authorization': `${import.meta.env.VITE_API_KEY}`, // Replace with your actual token
+    'Content-Type': 'application/json',
+    },
+}).then((res) => res.json());
+};
 
-const fetcher = ([url, options] :[url: string, options: RequestInit]) => {
-    return fetch(url, options).then(res => res.json())}
+export const usePexelsAPI = (query: string, perPage = 40) =>  {
 
-export const usePexelsAPI = (query: string, page = 0, perPage = 40) =>  {
-
-    const { data, error, isLoading } = useSWR([
-        `/api/v1/search?query=${query}&page=${page}&per_page=${perPage}`, 
-        { 
-            method: "GET",
-            headers: {
-                'Authorization': `${import.meta.env.VITE_API_KEY}`,
-            } 
+    const { data, error, isLoading, setSize, size } = useSWRInfinite(
+        (pageIndex, previousPageData) => {
+            if (previousPageData && !previousPageData.photos.length) return null //reached end
+            return `/api/v1/search?query=${query}&page=${pageIndex + 1}&per_page=${perPage}`
         }
-    ], fetcher)
-   
+            , 
+        fetcher,
+        {
+            revalidateFirstPage: false
+        }
+        
+    )
+
     return {
-        data: data as PhotoResponse,
+      data: data,
       isLoading,
-      isError: JSON.stringify(error)
+      isError: JSON.stringify(error), 
+      setSize, 
+      size
     }
   }

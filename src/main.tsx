@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.tsx'
 
 import { BrowserRouter, Route, Routes } from "react-router";
+import { PhotoDetails } from './PhotoDetails.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/photo/:id" element={<PhotoDetails />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
