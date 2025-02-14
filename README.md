@@ -23,7 +23,7 @@ $ npm run test:browser
 
 ## Notes
 
-I decided to brin a library to implement the virtualization, i read a few blogs about custom implementations but realized it would take quite some time.
+I decided to bring a library to implement the virtualization, i read a few blogs about custom implementations but realized it would take quite some time.
 
 For this i used react-virtuoso, the only issue I faced is a scrolling artifact when scrolling upwards. After some debugging i decided to move on to the rest of the task.
 
