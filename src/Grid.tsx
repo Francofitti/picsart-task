@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Photo, PhotoResponse } from "./Pexels.api";
+import { Photo } from "./Pexels.api";
 import { forwardRef, ReactNode, CSSProperties, HTMLAttributes } from "react";
 import { VirtuosoGrid } from "react-virtuoso";
 import { Link } from "react-router";
