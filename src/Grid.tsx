@@ -54,30 +54,29 @@ const gridComponents = {
   img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Ensures the image scales nicely */
+    object-fit: contain;
   }
 `;
   
 export const Grid = ({ data, onEndReached }: { data: Photo[], onEndReached: ((index: boolean) => void) }) => {
-    console.log(data)
     return (
       <>
         <VirtuosoGrid
           style={{ height: 732 }}
-          totalCount={data?.length}
+          data={data}
           overscan={30}
           atBottomStateChange={onEndReached}
           increaseViewportBy={300}
           components={gridComponents}
-          itemContent={(index) => {
-            const destination = {
-                pathname: `/photo/${data[index].id}`,
+          itemContent={(_, item) => {
+          const destination = {
+            pathname: `/photo/${item.id}`,
+          };
 
-              };
           return <ItemWrapper> 
-            <Link to={destination} state={data[index]}>
-                <img src={data[index].src.small}></img>
-            </Link>
+              <Link to={destination} state={item}>
+                  <img src={item.src.small}></img>
+              </Link>
             </ItemWrapper>
         }}
         />
