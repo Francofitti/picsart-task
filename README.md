@@ -31,5 +31,5 @@ For rest layer i went with useSWR, it provides caching and pagination logic with
 
 Tests are written using vite browser, i placed some examples, but i could add more tests. For example the callback on the grid being called after scroll end, but I have already dedicated quite some time.
 
-The big problem was trying to debug for to long the scroll issue, i sank a few hours there so the final cleanup feels a bit hasty. Honestly perhaps I should have implemented the virtualization myself but i did not have much time this week.
+The big problem was trying to debug for too long the scroll issue, i sank a couple of hours there so the final cleanup feels a bit hasty. Honestly perhaps I should have implemented the virtualization myself but i did not have much time this week.
 
