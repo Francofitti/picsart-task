@@ -1,50 +1,35 @@
-# React + TypeScript + Vite
+# Picsart Taks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup
 
-Currently, two official plugins are available:
+Install dependencies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+$ npm install
+```
+You will need to create a file named `.env.local` and add a variable called `VITE_API_KEY` with your Pexel key.
 
-## Expanding the ESLint configuration
+Dev server
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+$ npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Run tests
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+$ npm run test:browser
+```
+
+## Notes
+
+I decided to brin a library to implement the virtualization, i read a few blogs about custom implementations but realized it would take quite some time.
+
+For this i used react-virtuoso, the only issue I faced is a scrolling artifact when scrolling upwards. After some debugging i decided to move on to the rest of the task.
+
+For rest layer i went with useSWR, it provides caching and pagination logic without having to implment it myself.
+
+Tests are written using vite browser, i placed some examples, but i could add more tests. For example the callback on the grid being called after scroll end, but I have already dedicated quite some time.
+
+The big problem was trying to debug for to long the scroll issue, i sank a few hours there so the final cleanup feels a bit hasty. Honestly perhaps I should have implemented the virtualization myself but i did not have much time this week.
+

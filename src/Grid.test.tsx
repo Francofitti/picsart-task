@@ -2,7 +2,7 @@ import "@vitest/browser/matchers.d.ts";
 import { expect, test, vi, } from "vitest";
 import { Grid } from "./Grid";
 import { render } from 'vitest-browser-react'
-import { VirtuosoGridMockContext, VirtuosoMockContext } from "react-virtuoso";
+import { VirtuosoGridMockContext } from "react-virtuoso";
 import { MemoryRouter } from "react-router";
 
 // Mock data for testing
